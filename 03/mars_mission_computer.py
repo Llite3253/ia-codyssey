@@ -1,14 +1,16 @@
 import random
 
 class DummySensor:
+    # init 메소드는 객체 생성 시 초기값 설정을 위해 자동 호출되는 생성자자
     def __init__(self):
         self.env_values = {
-            'mars_base_internal_temperature': int,
-            'mars_base_external_temperature': int,
-            'mars_base_internal_humidity': int,
-            'mars_base_external_illuminance': int,
-            'mars_base_internal_co2': float,
-            'mars_base_internal_oxygen': int
+            # None을 쓰는 이유: py 에서는 값을 초기화 되지 않은 상태를 나타내기 위해 None을 사용
+            'mars_base_internal_temperature': None,
+            'mars_base_external_temperature': None,
+            'mars_base_internal_humidity': None,
+            'mars_base_external_illuminance': None,
+            'mars_base_internal_co2': None,
+            'mars_base_internal_oxygen': None
         }
     
     def set_env(self):
@@ -43,7 +45,7 @@ class DummySensor:
             'mars_base_internal_oxygen: ' + str(self.env_values.get('mars_base_internal_oxygen')) + '\n'
         )
         try:
-            with open('env.log', 'w') as log_file:
+            with open('env.log', 'a') as log_file:
                 log_file.write(log_line)
         except Exception as e:
             print('로그 파일 저장 오류: ', e)
@@ -56,11 +58,11 @@ def main():
     print('환경 값:')
     for key, value in env.items():
         if key == 'mars_base_internal_temperature' or key == 'mars_base_external_temperature':
-            print('{0} : {1}도'.format(key, value))
+            print('{0}: {1}도'.format(key, value))
         elif key == 'mars_base_internal_humidity' or key == 'mars_base_internal_co2' or key == 'mars_base_internal_oxygen':
-            print('{0} : {1}%'.format(key, value))
+            print('{0}: {1}%'.format(key, value))
         elif key == 'mars_base_external_illuminance':
-            print('{0} : {1} W/m2'.format(key, value))
+            print('{0}: {1} W/m2'.format(key, value))
 
 if __name__ == '__main__':
     main()
