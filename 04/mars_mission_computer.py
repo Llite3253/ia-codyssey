@@ -1,7 +1,6 @@
 import random
 import time
 
-
 class DummySensor:
     def __init__(self):
         self.env_values = {
@@ -81,7 +80,7 @@ class MissionComputer:
                 self.update_env_sums() # 평군 계산을 위한 데이터 누적
 
                 # 5분마다 평균값 계산 및 출력
-                if time.time() - self.start_time >= 30:
+                if time.time() - self.start_time >= 300:
                     self.calculate_and_print_average()
 
                 time.sleep(5)
